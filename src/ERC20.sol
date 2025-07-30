@@ -32,7 +32,7 @@ contract  ERC20 {
        return _transfer(msg.sender, to, value);
     }
 
-    function _mint(address to, uint256 value) private  {
+    function _mint(address to, uint256 value) internal  {
         balanceOf[to] += value;
         totalSupply += value;
 
@@ -41,7 +41,7 @@ contract  ERC20 {
 
   
 
-    function _burn(address from, uint256 value) private {
+    function _burn(address from, uint256 value) internal {
         balanceOf[from] -=value;
         totalSupply -=value;
         emit Transfer(from, address(0), value);
@@ -76,3 +76,4 @@ contract  ERC20 {
         emit Approval(msg.sender, spender, value);
         return true;
     }
+}
