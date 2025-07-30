@@ -38,8 +38,17 @@ contract ERC20TransferTest is BaseSetup {
 
     function testCannotTransferMoreThanBalance() public {
         vm.prank(alice);
-        vm.expectRevert("ERC20: Insufficient sender balance");
+        vm.expectRevert("ERC20: Insufficient sender balance ");
         this.transfer(bob, 400e18);
+    }
+
+    function testEmitsTransferEvent() public {
+        vm.expectEmit(true, true, true, false);
+
+        emit Transfer(alice, bob, 100e18);
+
+        vm.prank(alice);
+        this.transfer(bob, 100e18);
     }
 }
 
