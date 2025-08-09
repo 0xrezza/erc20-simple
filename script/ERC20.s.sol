@@ -9,7 +9,8 @@ contract ERC20Script is Script {
     function setUp() public {}
 
     function run() public {
-        uint256 key = 0x1f6xxfjsafjsafo993yr0;
+        uint256 key = vm.envUint("PRIVATE_KEY");
+
         vm.broadcast(key);
 
         new ERC20("Name", "SYM", 18);
